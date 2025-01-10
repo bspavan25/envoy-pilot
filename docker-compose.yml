@@ -2,6 +2,7 @@
 
 services:
   envoy:
+    init: true
     build: .
     volumes:
       - ./envoy.yaml:/etc/envoy/envoy.yaml
@@ -22,6 +23,7 @@ services:
           memory: 256M
 
   dummy_service:
+    init: true
     image: python:3.9-slim
     command: ["python", "-m", "http.server", "9000"]
     ports:

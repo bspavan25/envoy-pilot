@@ -18,7 +18,7 @@ static_resources:
                       domains:
                         - test1.google.com
                         - test2.google.com
-                        - test3.google.com
+                        - test4.google.com
                       routes:
                         - match:
                             prefix: "/"
