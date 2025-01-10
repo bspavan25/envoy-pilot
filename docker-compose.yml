@@ -1,0 +1,38 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  envoy:
+    platform: linux/amd64
+    build: .
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml
+      - ./hot-restarter.py:/usr/local/bin/hot-restarter.py
+    ports:
+      - "8080:8080"  # Envoy listener
+      - "8001:8001"  # Envoy admin interface
+    depends_on:
+      - dummy_service
+    networks:
+      - envoy-net
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
+
+  dummy_service:
+    platform: linux/amd64
+    image: python:3.9-slim
+    command: ["python", "-m", "http.server", "9000"]
+    ports:
+      - "9000:9000"
+    networks:
+      - envoy-net
+    restart: unless-stopped
+
+networks:
+  envoy-net:
+    driver: bridge
