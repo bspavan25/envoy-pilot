@@ -1,9 +1,7 @@
-# docker-compose.yml
-version: '3.8'
+
 
 services:
   envoy:
-    platform: linux/amd64
     build: .
     volumes:
       - ./envoy.yaml:/etc/envoy/envoy.yaml
@@ -24,7 +22,6 @@ services:
           memory: 256M
 
   dummy_service:
-    platform: linux/amd64
     image: python:3.9-slim
     command: ["python", "-m", "http.server", "9000"]
     ports:

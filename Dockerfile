@@ -1,5 +1,4 @@
-# Dockerfile
-FROM --platform=linux/amd64 envoyproxy/envoy-contrib:v1.26-latest
+FROM envoyproxy/envoy:v1.26-latest
 
 # Install Python and dependencies
 USER root
@@ -21,10 +20,8 @@ COPY envoy.yaml /etc/envoy/envoy.yaml
 # Expose necessary ports
 EXPOSE 8080 8001 9000
 
-# Set environment variable for restart_epoch
+# Set environment variables for optimization
 ENV RESTART_EPOCH=0
-
-# Lower memory limits to avoid Rosetta issues
 ENV MALLOC_ARENA_MAX=2
 ENV GOGC=50
 

@@ -20,8 +20,10 @@ static_resources:
                         - test2.google.com
                         - test3.google.com
                       routes:
-                        - match: { prefix: "/" }
-                          route: { cluster: example_cluster }
+                        - match:
+                            prefix: "/"
+                          route:
+                            cluster: example_cluster
                 http_filters:
                   - name: envoy.filters.http.router
                     typed_config:
@@ -29,7 +31,8 @@ static_resources:
   clusters:
     - name: example_cluster
       connect_timeout: 1s
-      type: STATIC
+      type: STRICT_DNS
+      lb_policy: ROUND_ROBIN
       load_assignment:
         cluster_name: example_cluster
         endpoints:
