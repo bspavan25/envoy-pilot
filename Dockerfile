@@ -26,4 +26,4 @@ ENV MALLOC_ARENA_MAX=2
 ENV GOGC=50
 
 # Define the entrypoint to run the hot-restarter script
-CMD ["python3", "/usr/local/bin/hot-restarter.py", "/usr/local/bin/envoy", "-c", "/etc/envoy/envoy.yaml", "--service-cluster", "cluster1", "--cpuset-threads"]
+CMD ["python3", "/usr/local/bin/hot-restarter.py", "/usr/local/bin/envoy", "-c", "/etc/envoy/envoy.yaml"]
