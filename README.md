@@ -27,10 +27,9 @@
 
 ## Testing with http server
 
-- **Make a Host entruy**
-   - `127.0.0.1       localhost test1.google.com test2.google.com test3.google.com test4.google.com`
 - **Curl the test websites**
    - `curl -i -H "Host: test3.google.com" http://127.0.0.1:8080`
+   - You should be able to see incoming requests from dummy service logs.
 
 
 ## vanilla Setup
